@@ -210,13 +210,9 @@ $ node register.js
 ```
 
 > **注意：**你不能在你要编译的文件内同时注册 Babel，因为 node 会在 Babel 编译它之前就将它执行了。
->
-> ```js
-> require("babel-register");
-> // 未编译的：
-> console.log("Hello world!");
-> ```
-```
+> `require("babel-register");`
+> `// 未编译的：`
+> `console.log("Hello world!");`
 
 ## <a id="toc-babel-node"></a>`babel-node`
 
@@ -226,7 +222,7 @@ $ node register.js
 
 首先确保 `babel-cli` 已经安装了。
 
-​```sh
+```sh
 $ npm install --save-dev babel-cli
 ```
 
