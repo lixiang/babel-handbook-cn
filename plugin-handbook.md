@@ -1413,9 +1413,8 @@ ReturnStatement(path) {
 > }`);
 > }
 > ```
-```
 
-​```diff
+```diff
 - function square(n) {
 -   return n * n;
 + function add(a, b) {
@@ -1429,13 +1428,13 @@ ReturnStatement(path) {
 >
 > ```js
 > FunctionDeclaration(path) {
-> path.insertBefore(t.expressionStatement(t.stringLiteral("Because I'm easy come, easy go.")));
-> path.insertAfter(t.expressionStatement(t.stringLiteral("A little high, little low.")));
+>   path.insertBefore(t.expressionStatement(t.stringLiteral("Because I'm easy come, easy go.")));
+>   path.insertAfter(t.expressionStatement(t.stringLiteral("A little high, little low.")));
 > }
 > ```
 ```
 
-​```diff
+```diff
 + "Because I'm easy come, easy go.";
   function square(n) {
     return n * n;
@@ -1458,7 +1457,7 @@ ReturnStatement(path) {
 > ```
 ```
 
-​```diff
+```diff
  class A {
   constructor() {
 +   "before"
@@ -1776,7 +1775,7 @@ You can see that `object` needs to be an `Expression`, `property` either needs t
 
 So we can construct a `MemberExpression` by doing the following:
 
-​```js
+```js
 t.memberExpression(
   t.identifier('object'),
   t.identifier('property')
@@ -2045,10 +2044,10 @@ const MyVisitor = {
 
 ### 快照测试
 
-接下来，用`` npm install --save-dev babel-core jest </>安装我们的依赖关系，
+接下来，用`npm install --save-dev babel-core jest`安装我们的依赖关系，
 那么我们可以开始写我们的第一个测试：快照。 快照测试允许我们直观地检查我们的babel插件的输出。 我们给它一个输入，告诉它一个快照，并将其保存到一个文件。 我们检查快照到git中。 这允许我们来看看我们什么时候影响了我们任何试用例子测试的输出。 它也给出了使用差异在拉请求的时候。 当然，您可以用任何测试框架来做到这一点，但是要更新一下快照就像<code>jest -u </>一样简单.</p>
 
-<pre><code class="js">// src/__tests__/index-test.js
+```src/__tests__/index-test.js
 const babel = require('babel-core');
 const plugin = require('../');
 
@@ -2061,7 +2060,7 @@ it('works', () => {
   const {code} = babel.transform(example, {plugins: [plugin]});
   expect(code).toMatchSnapshot();
 });
-``</pre> 
+```
 
 这给了我们一个快照文件在`` src / __ tests __ / __ snapshots __ / index-test.js.snap </>.</p>
 
