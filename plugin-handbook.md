@@ -1916,12 +1916,7 @@ const MyVisitor = {
 };
 ```
 
-但是，每当调用`FunctionDeclaration()`时都会创建一个新的访问者对象。 That can be costly, because Babel does some processing each time a new
-visitor object is passed in (such as exploding keys containing multiple types,
-performing validation, and adjusting the object structure). Because Babel stores
-flags on visitor objects indicating that it's already performed that processing,
-it's better to store the visitor in a variable and pass the same object each
-time.</p>
+但是，每当调用`FunctionDeclaration()`时都会创建一个新的访问者对象。那可以代价很大，因为Babel每次都会做很多处理当一个新的访问对象传递的时候（就像是爆炸的关键包含多样化的类型，完成确认然后调节对象结构）。因为Babel储存标记在访问对象上表明它已经处理完成了，最好是将访问者储存在一个变量里面然后每次传递同一个对象。
 
 ```const nestedVisitor = {
   Identifier(path) {
@@ -1954,7 +1949,7 @@ const MyVisitor = {
 };
 ```
 
-您可以将它作为状态传递给`traverse()</ 0>方法，并有权访问<code>this`在访问者中。
+您可以将它作为状态传递给`traverse()`方法，并有权访问`this`在访问者中。
 
 ```js
 const nestedVisitor = {
@@ -2005,7 +2000,7 @@ const MyVisitor = {
 }
 ```
 
-我们忽略了类可以嵌套的事实，使用遍历的话，上面我们也会得到一个嵌套的`构造函数</>：</p>
+我们忽略了类可以嵌套的事实，使用遍历的话，上面我们也会得到一个嵌套的`构造函数`
 
 ```class Foo {
   constructor() {
@@ -2058,7 +2053,7 @@ it('works', () => {
 });
 ```
 
-这给了我们一个快照文件在`src / __ tests __ / __ snapshots __ / index-test.js.snap`
+这给了我们一个快照文件在`src/__tests__/__snapshots__/index-test.js.snap`
 
 ```
 exports[`test works 1`] = `
