@@ -4,7 +4,6 @@
 
 [![cc-by-4.0](https://licensebuttons.net/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
-这本手册提供了多种语言的版本，查看 [自述文件](/README.md) 里的完整列表。
 
 # 目录
 
