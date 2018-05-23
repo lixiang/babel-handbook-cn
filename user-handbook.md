@@ -132,15 +132,14 @@ $ npm install --save-dev babel-cli
 ```
 
 > **注意：**因为全局运行 Babel 通常不是什么好习惯所以如果你想要卸载全局安装的 Babel 的话，可以运行：
->
-> ```sh
-> $ npm uninstall --global babel-cli
-> ```
+
+```sh
+$ npm uninstall --global babel-cli
 ```
 
 
 
-​```json
+```json
 {
   "name": "my-project",
   "version": "1.0.0",
@@ -169,7 +168,7 @@ $ npm install --save-dev babel-cli
 
 现在可以在终端里运行：
 
-```js
+```sh
 npm run build
 ```
 
@@ -211,13 +210,9 @@ $ node register.js
 ```
 
 > **注意：**你不能在你要编译的文件内同时注册 Babel，因为 node 会在 Babel 编译它之前就将它执行了。
->
-> ```js
-> require("babel-register");
-> // 未编译的：
-> console.log("Hello world!");
-> ```
-```
+> `require("babel-register");`
+> `// 未编译的：`
+> `console.log("Hello world!");`
 
 ## <a id="toc-babel-node"></a>`babel-node`
 
@@ -227,7 +222,7 @@ $ node register.js
 
 首先确保 `babel-cli` 已经安装了。
 
-​```sh
+```sh
 $ npm install --save-dev babel-cli
 ```
 
