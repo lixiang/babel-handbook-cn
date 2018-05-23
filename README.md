@@ -8,5 +8,5 @@
 
 > 在 Twitter 上关注 [@thejameskyle](https://twitter.com/thejameskyle)，第一时间获取更新。感谢 [@thejameskyle](https://twitter.com/thejameskyle)做出的贡献
 
-本书 原版版权是[babel-handbook](https://github.com/jamiebuilds/babel-handbook)，作为个人学习的资料，无任何商业用途，如有版权问题请联系我(lixiangltp@gmail.com)
+本书 原版版权是[babel-handbook](https://github.com/jamiebuilds/babel-handbook)，作为个人学习的过程中，发现部分有排版问题，很多热心开发者发了PR并无人维护，因此修订下，后续会加上example，无任何商业用途，如有版权问题请联系我(lixiangltp@gmail.com)
 
