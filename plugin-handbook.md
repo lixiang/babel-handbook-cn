@@ -1697,9 +1697,9 @@ export default function({ types: t }) {
 
 # <a id="toc-building-nodes"></a>构建节点
 
-编写转换时，通常需要构建一些要插入的节点进入AST。 如前所述，您可以使用` babel-types`包中的<a href="#builders">builder 方法.
+编写转换时，通常需要构建一些要插入的节点进入AST。 如前所述，您可以使用`babel-types`包中的<a href="#builders">builder </a>方法.
 
-构建器的方法名称就是您想要的节点类型的名称，除了第一个字母小写。 例如，如果您想建立一个`MemberExpression`您可以使用t.memberExpression（...）
+构建器的方法名称就是您想要的节点类型的名称，除了第一个字母小写。 例如，如果您想建立一个`MemberExpression`您可以使用`t.memberExpression（...）`
 
 这些构建器的参数由节点定义决定。 有一些正在做的工作，以生成易于阅读的文件定义，但现在他们都可以在<a href="https://github.com/babel/babel/tree/master/packages/babel-types/src/definitions">此处</a>找到。
 
@@ -1734,7 +1734,7 @@ export default function({ types: t }) {
 生成器: ["object", "property", "computed"],
 ```
 
-> 请注意，有时在节点上可以定制的属性比``构建器</>数组包含的属性更多。 这是为了防止生成器有太多的参数。 在这些情况下，您需要手动设置属性。 一个例子是 `ClassMethod`
+> 请注意，有时在节点上可以定制的属性比`构建器`数组包含的属性更多。 这是为了防止生成器有太多的参数。 在这些情况下，您需要手动设置属性。 一个例子是 `ClassMethod`
 
 ```// Example
 // because the builder doesn't contain `async` as a property
