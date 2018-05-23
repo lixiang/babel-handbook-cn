@@ -1748,7 +1748,7 @@ var node = t.classMethod(
 node.async = true;
 ```
 
-You can see the validation for the builder arguments with the `fields` object.
+你可以看到builder的验证参数与对象的`字段`
 
 ```js
 fields: {
@@ -1767,9 +1767,9 @@ fields: {
 }
 ```
 
-You can see that `object` needs to be an `Expression`, `property` either needs to be an `Expression` or an `Identifier` depending on if the member expression is `computed` or not and `computed` is simply a boolean that defaults to `false`.
+你可以看到`对象`需要一个`表达式`,`属性`需要一个`表达式`或者一个`标识符`取决于如果成员表达式是否`计算`和`计算`仅仅是一个布尔值默认值是`否`.
 
-So we can construct a `MemberExpression` by doing the following:
+通过以下我们可以构建一个`MemberExpression`
 
 ```js
 t.memberExpression(
@@ -1779,21 +1779,21 @@ t.memberExpression(
 );
 ```
 
-Which will result in:
+这将导致:
 
 ```js
 object.property
 ```
 
-However, we said that `object` needed to be an `Expression` so why is `Identifier` valid?
+然而，我们说`对象`需要变成一个表达形式，以至于为什么`标识符`是`有效`的？
 
-Well if we look at the definition of `Identifier` we can see that it has an `aliases` property which states that it is also an expression.
+如果我们看看`标识符`的定义可以看出,它有一个`别名`属性即也是一个表达式.
 
 ```js
 aliases: ["Expression", "LVal"],
 ```
 
-So since `MemberExpression` is a type of `Expression`, we could set it as the `object` of another `MemberExpression`:
+既然`MemberExpression`是一种`表达式`,我们可以将它设置为`对象`的另一个`MemberExpression`:
 
 ```js
 t.memberExpression(
@@ -1805,23 +1805,23 @@ t.memberExpression(
 )
 ```
 
-Which will result in:
+这将导致:
 
 ```js
 member.expression.property
 ```
 
-It's very unlikely that you will ever memorize the builder method signatures for every node type. So you should take some time and understand how they are generated from the node definitions.
+很可能你会记住每个节点类型的构建方法签名。所以你应该花一些时间和理解它们是如何产生的节点定义。
 
-You can find all of the actual [definitions here](https://github.com/babel/babel/tree/master/packages/babel-types/src/definitions) and you can see them [documented here](https://github.com/babel/babel/blob/master/doc/ast/spec.md)
+你可以找到所有的[定义在这里](https://github.com/babel/babel/tree/master/packages/babel-types/src/definitions) 和你会看到 [文档在这里](https://github.com/babel/babel/blob/master/doc/ast/spec.md)
 
 * * *
 
 # <a id="toc-best-practices"></a>最佳实践
 
-## <a id="toc-create-helper-builders-and-checkers"></a> Create Helper Builders and Checkers
+## <a id="toc-create-helper-builders-and-checkers"></a> 构建帮助构建器和检测器
 
-It's pretty simple to extract certain checks (if a node is a certain type) into their own helper functions as well as extracting out helpers for specific node types.
+很简单的提取某些检查(如果一个节点是一个特定类型)到自己的辅助函数以及提取帮手为特定的节点类型。
 
 ```js
 function isAssignment(node) {
@@ -1835,13 +1835,13 @@ function buildAssignment(left, right) {
 
 ## <a id="toc-avoid-traversing-the-ast-as-much-as-possible"></a>尽量避免遍历抽象语法树（AST）
 
-Traversing the AST is expensive, and it's easy to accidentally traverse the AST more than necessary. This could be thousands if not tens of thousands of extra operations.
+遍历AST代价太大了，而且比起必要性一不小心的遍历AST更容易。如果不是成千上万的额外操作，这可能是数千个。
 
 Babel optimizes this as much as possible, merging visitors together if it can in order to do everything in a single traversal.
 
 ### <a id="toc-merge-visitors-whenever-possible"></a>及时合并访问者对象
 
-When writing visitors, it may be tempting to call `path.traverse` in multiple places where they are logically necessary.
+但我们写访问者时，他可能被称之为`path.traverse` 导致在多个地方上逻辑是必要的
 
 ```js
 path.traverse({
@@ -1857,7 +1857,7 @@ path.traverse({
 });
 ```
 
-However, it is far better to write these as a single visitor that only gets run once. Otherwise you are traversing the same tree multiple times for no reason.
+然而,最好能写这些作为一个访问者,只有运行一次。否则你多次遍历是相同的树。
 
 ```js
 path.traverse({
@@ -1872,6 +1872,7 @@ path.traverse({
 
 ### <a id="toc-do-not-traverse-when-manual-lookup-will-do"></a>可以手动查找就不要遍历
 
+它也可能想要给的路径遍历的时候寻找一个特定的节点类型。
 It may also be tempting to call `path.traverse` when looking for a particular node type.
 
 ```js
