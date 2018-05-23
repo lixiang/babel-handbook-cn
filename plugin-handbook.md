@@ -1402,17 +1402,17 @@ ReturnStatement(path) {
   }
 ```
 
-> **注意：</>当用多个节点替换一个表达式时，它们必须是   声明。 这是因为Babel在更换节点时广泛使用启发式算法，这意味着您可以做一些非常疯狂的转换，否则将会非常冗长。</p> </blockquote> 
->
-> ### <a id="toc-replacing-a-node-with-a-source-string"></a>用字符串源码替换节点
->
-> ```js
-> FunctionDeclaration(path) {
-> path.replaceWithSourceString(`function add(a, b) {
->   return a + b;
-> }`);
-> }
-> ```
+> 当用多个节点替换一个表达式时，它们必须是声明。 这是因为Babel在更换节点时广泛使用启发式算法，这意味着您可以做一些非常疯狂的转换，否则将会非常冗长。
+
+ ### <a id="toc-replacing-a-node-with-a-source-string"></a>用字符串源码替换节点
+
+ ```js
+FunctionDeclaration(path) {
+ path.replaceWithSourceString(`function add(a, b) {
+   return a + b;
+ }`);
+}
+```
 
 ```diff
 - function square(n) {
@@ -1422,16 +1422,15 @@ ReturnStatement(path) {
   }
 ```
 
-> **注意：</>不建议使用这个API，除非您正在处理动态的源码字符串，否则在访问者外部解析代码更有效率。</p> </blockquote> 
->
-> ### <a id="toc-inserting-a-sibling-node"></a>插入兄弟节点
->
-> ```js
-> FunctionDeclaration(path) {
->   path.insertBefore(t.expressionStatement(t.stringLiteral("Because I'm easy come, easy go.")));
->   path.insertAfter(t.expressionStatement(t.stringLiteral("A little high, little low.")));
-> }
-> ```
+> 注意：不建议使用这个API，除非您正在处理动态的源码字符串，否则在访问者外部解析代码更有效率。 
+
+### <a id="toc-inserting-a-sibling-node"></a>插入兄弟节点
+
+```js
+FunctionDeclaration(path) {
+  path.insertBefore(t.expressionStatement(t.stringLiteral("Because I'm easy come, easy go.")));
+  path.insertAfter(t.expressionStatement(t.stringLiteral("A little high, little low.")));
+}
 ```
 
 ```diff
@@ -1442,19 +1441,18 @@ ReturnStatement(path) {
 + "A little high, little low.";
 ```
 
-> 注意：</>这里同样应该使用声明或者一个声明数组。 这个使用了在用多个节点替换一个节点</>中提到的相同的启发式算法。.</p> </blockquote> 
->
-> ### <a id="toc-inserting-into-a-container"></a>插入到容器（container）中
->
-> 如果您想要在AST节点属性中插入一个像` body </ 0>那样的数组。
-> 它与 <code> insertBefore `/` insertAfter ` 类似, 但您必须指定 ` listKey ` (通常是 ` 正文 `).
->
-> ```js
-> ClassMethod(path) {
-> path.get('body').unshiftContainer('body', t.expressionStatement(t.stringLiteral('before')));
-> path.get('body').pushContainer('body', t.expressionStatement(t.stringLiteral('after')));
-> }
-> ```
+> 注意：这里同样应该使用声明或者一个声明数组。 这个使用了在用多个节点替换一个节点</>中提到的相同的启发式算法。
+
+### <a id="toc-inserting-into-a-container"></a>插入到容器（container）中
+
+如果您想要在AST节点属性中插入一个像`body`那样的数组。
+它与 `insertBefore `/` insertAfter ` 类似, 但您必须指定 ` listKey ` (通常是 ` 正文 `).
+
+```js
+ClassMethod(path) {
+ path.get('body').unshiftContainer('body', t.expressionStatement(t.stringLiteral('before')));
+ path.get('body').pushContainer('body', t.expressionStatement(t.stringLiteral('after')));
+}
 ```
 
 ```diff
@@ -1483,14 +1481,14 @@ FunctionDeclaration(path) {
 
 ### <a id="toc-replacing-a-parent"></a>替换父节点
 
-只需使用parentPath：` path.parentPath </>调用<code> replaceWith </>即可</p>
+只需使用parentPath：`path.parentPath`调用`replaceWith`即可
 
-<pre><code class="js">BinaryExpression(path) {
+```BinaryExpression(path) {
   path.parentPath.replaceWith(
     t.expressionStatement(t.stringLiteral("Anyway the wind blows, doesn't really matter to me, to me."))
   );
 }
-`</pre> 
+``` 
 
 ```diff
   function square(n) {
@@ -1527,7 +1525,7 @@ FunctionDeclaration(path) {
 
 这将遍历范围树并检查特定的绑定。
 
-您也可以检查一个作用域是否有**自己的</>绑定：</p> 
+您也可以检查一个作用域是否有自己的绑定: 
 
 ```js
 FunctionDeclaration(path) {
@@ -1552,14 +1550,14 @@ FunctionDeclaration(path) {
 
 ### <a id="toc-pushing-a-variable-declaration-to-a-parent-scope"></a>提升变量声明至父级作用域
 
-有时你可能想要推送一个` VariableDeclaration </>，这样你就可以分配给它。</p>
+有时你可能想要推送一个` VariableDeclaration`，这样你就可以分配给它.
 
-<pre><code class="js">FunctionDeclaration(path) {
+```FunctionDeclaration(path) {
   const id = path.scope.generateUidIdentifierBasedOnNode(path.node.id);
   path.remove();
   path.scope.parent.push({ id, init: path.node });
 }
-`</pre> 
+``` 
 
 ```diff
 - function square(n) {
@@ -1603,7 +1601,7 @@ FunctionDeclaration(path) {
 
 * * *
 
-# <a id="toc-plugin-options"></a>插件选项
+### <a id="toc-plugin-options"></a>插件选项
 
 如果您想让您的用户自定义您的Babel插件的行为您可以接受用户可以指定的插件特定选项，如下所示：
 
@@ -1618,9 +1616,9 @@ FunctionDeclaration(path) {
 }
 ```
 
-这些选项会通过`状态</>对象传递给插件访问者：</p>
+这些选项会通过`状态`对象传递给插件访问者:
 
-<pre><code class="js">export default function({ types: t }) {
+```export default function({ types: t }) {
   return {
     visitor: {
       FunctionDeclaration(path, state) {
@@ -1630,7 +1628,7 @@ FunctionDeclaration(path) {
     }
   }
 }
-`</pre> 
+``` 
 
 这些选项是特定于插件的，您不能访问其他插件中的选项。
 
@@ -1658,7 +1656,7 @@ export default function({ types: t }) {
 
 ## <a id="toc-enabling-syntax-in-plugins"></a> 在插件中启用其他语法
 
-插件可以启用babylon plugins</>，以便用户不需要安装/启用它们。 这可以防止解析错误，而不会继承语法插件。</p> 
+插件可以启用babylon `plugins`，以便用户不需要安装/启用它们。 这可以防止解析错误，而不会继承语法插件.
 
 ```js
 export default function({ types: t }) {
@@ -1699,15 +1697,15 @@ export default function({ types: t }) {
 
 # <a id="toc-building-nodes"></a>构建节点
 
-编写转换时，通常需要构建一些要插入的节点进入AST。 如前所述，您可以使用` babel-types </>包中的<a href="#builders">builder </>方法。</p>
+编写转换时，通常需要构建一些要插入的节点进入AST。 如前所述，您可以使用` babel-types`包中的<a href="#builders">builder 方法.
 
-<p>构建器的方法名称就是您想要的节点类型的名称，除了第一个字母小写。 例如，如果您想建立一个<code> MemberExpression </>您可以使用<code> t.memberExpression（...）</>.</p>
+构建器的方法名称就是您想要的节点类型的名称，除了第一个字母小写。 例如，如果您想建立一个`MemberExpression`您可以使用t.memberExpression（...）
 
-<p>这些构建器的参数由节点定义决定。 有一些正在做的工作，以生成易于阅读的文件定义，但现在他们都可以在<a href="https://github.com/babel/babel/tree/master/packages/babel-types/src/definitions">此处</a>找到。.</p>
+这些构建器的参数由节点定义决定。 有一些正在做的工作，以生成易于阅读的文件定义，但现在他们都可以在<a href="https://github.com/babel/babel/tree/master/packages/babel-types/src/definitions">此处</a>找到。
 
-<p>节点定义如下所示：</p>
+节点定义如下所示:
 
-<pre><code class="js">defineType("MemberExpression", {
+```defineType("MemberExpression", {
   builder: ["object", "property", "computed"],
   visitor: ["object", "property"],
   aliases: ["Expression", "LVal"],
@@ -1726,7 +1724,7 @@ export default function({ types: t }) {
     }
   }
 });
-`</pre> 
+```
 
 在这里你可以看到关于这个特定节点类型的所有信息，包括如何构建它，遍历它，并验证它。
 
@@ -1736,10 +1734,9 @@ export default function({ types: t }) {
 生成器: ["object", "property", "computed"],
 ```
 
-> 请注意，有时在节点上可以定制的属性比``构建器</>数组包含的属性更多。 这是为了防止生成器有太多的参数。 在这些情况下，您需要手动设置属性。 一个例子是<class> ClassMethod </>.</p>
-</blockquote>
+> 请注意，有时在节点上可以定制的属性比``构建器</>数组包含的属性更多。 这是为了防止生成器有太多的参数。 在这些情况下，您需要手动设置属性。 一个例子是 `ClassMethod`
 
-<pre><code class="js">// Example
+```// Example
 // because the builder doesn't contain `async` as a property
 var node = t.classMethod(
   "constructor",
@@ -1749,26 +1746,25 @@ var node = t.classMethod(
 )
 // set it manually after creation
 node.async = true;
-``</pre> 
->
-> You can see the validation for the builder arguments with the `fields` object.
->
-> ```js
-> fields: {
-> object: {
->   validate: assertNodeType("Expression")
-> },
-> property: {
->   validate(node, key, val) {
->     let expectedType = node.computed ? "Expression" : "Identifier";
->     assertNodeType(expectedType)(node, key, val);
->   }
-> },
-> computed: {
->   default: false
-> }
-> }
-> ```
+```
+
+You can see the validation for the builder arguments with the `fields` object.
+
+```js
+fields: {
+ object: {
+   validate: assertNodeType("Expression")
+ },
+ property: {
+   validate(node, key, val) {
+     let expectedType = node.computed ? "Expression" : "Identifier";
+     assertNodeType(expectedType)(node, key, val);
+   }
+ },
+ computed: {
+   default: false
+ }
+}
 ```
 
 You can see that `object` needs to be an `Expression`, `property` either needs to be an `Expression` or an `Identifier` depending on if the member expression is `computed` or not and `computed` is simply a boolean that defaults to `false`.
