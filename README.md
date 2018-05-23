@@ -10,3 +10,9 @@
 
 本书 原版版权是[babel-handbook](https://github.com/jamiebuilds/babel-handbook)，作为个人学习的过程中，发现部分有排版问题，很多热心开发者发了PR并无人维护，因此修订下，加上example，翻译完成未翻译部分，无任何商业用途，如有版权问题请联系我(lixiangltp@gmail.com)
 
+``` bash
+cd example/babylonExample
+npm install
+npm run dev
+```
+
