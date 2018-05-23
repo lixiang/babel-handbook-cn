@@ -137,7 +137,7 @@ $ npm install --save-dev babel-cli
 $ npm uninstall --global babel-cli
 ```
 
-
+安装完成后，你的 `package.json` 应该如下所示：
 
 ```json
 {
