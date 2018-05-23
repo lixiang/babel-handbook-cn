@@ -1837,7 +1837,7 @@ function buildAssignment(left, right) {
 
 遍历AST代价太大了，而且比起必要性一不小心的遍历AST更容易。如果不是成千上万的额外操作，这可能是数千个。
 
-Babel optimizes this as much as possible, merging visitors together if it can in order to do everything in a single traversal.
+Babel 尽可能来完善它，为了所有的东西都用一个遍历尽可能的将访问者合并。
 
 ### <a id="toc-merge-visitors-whenever-possible"></a>及时合并访问者对象
 
@@ -1872,8 +1872,7 @@ path.traverse({
 
 ### <a id="toc-do-not-traverse-when-manual-lookup-will-do"></a>可以手动查找就不要遍历
 
-它也可能想要给的路径遍历的时候寻找一个特定的节点类型。
-It may also be tempting to call `path.traverse` when looking for a particular node type.
+它也可能想要给的`路径遍历`的时候寻找一个特定的节点类型。
 
 ```js
 const nestedVisitor = {
@@ -1889,7 +1888,7 @@ const MyVisitor = {
 };
 ```
 
-However, if you are looking for something specific and shallow, there is a good chance you can manually lookup the nodes you need without performing a costly traversal.
+然而，如果你在寻找一些特别的和肤浅的，这里有一个好的机会可以实现，你可以手动的查找这些节点而且不需要完成一个代价大的遍历。
 
 ```js
 const MyVisitor = {
