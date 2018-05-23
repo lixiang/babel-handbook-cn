@@ -1317,9 +1317,8 @@ path.getStatementParent();
 > var b = 2; // pathB, path.key = 1
 > var c = 3; // pathC, path.key = 2
 > ```
-```
 
-​```js
+```js
 export default function({ types: t }) {
   return {
     visitor: {
