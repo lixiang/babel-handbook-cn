@@ -14,5 +14,21 @@
 cd example/babylonExample
 npm install
 npm run dev
+
+cd example/astActionExample
+npm install 
+node create.js
+node retrieve.js
+node update.js
+node vue2mp.js
 ```
 
+
+
+参考资料:
+
+ast结构查询:https://astexplorer.net/
+
+babel-traverse:https://new.babeljs.io/docs/en/babel-traverse.html
+
+babel-types:https://babel.docschina.org/docs/core-packages/babel-types/
